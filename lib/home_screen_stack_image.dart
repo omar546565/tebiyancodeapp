@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tebiyancode/home_screen_column.dart';
 
 
-class HomeScreen extends StatelessWidget 
+class HomeScreenStackImage extends StatelessWidget 
 {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreenStackImage({Key? key}) : super(key: key);
 
   
 
