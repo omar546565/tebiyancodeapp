@@ -2,28 +2,29 @@ import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget 
 {
+  const HomeScreen({Key? key}) : super(key: key);
+
   
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.menu,) ,
-        title: Text('tebiyancode',),
+        leading: const Icon(Icons.menu,) ,
+        title:   const Text('tebiyancode',),
         actions: 
         [
           IconButton(
-            icon: Icon(
-            Icons.notification_important,
-          ),
+            icon:const Icon(Icons.notification_important,
+            ),
             onPressed: onNotificaltion,
             ),
           IconButton(
-            icon: Text('hello'), 
-          onPressed: () {
-            print('hello');
-            }, ),
-          
+            icon: const Text('hello'
+            ), 
+          // ignore: avoid_print
+          onPressed: () { print('hello');},
+           ),
         ],
         
       ),
@@ -31,6 +32,7 @@ class HomeScreen extends StatelessWidget
   }
 
   void onNotificaltion(){
+    // ignore: avoid_print
     print('Notificaltion clicked');
   }
 }
