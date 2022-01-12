@@ -28,6 +28,61 @@ class HomeScreen extends StatelessWidget
         ],
         
       ),
+      body: Column(
+        children:  [
+           // ignore: avoid_unnecessary_containers
+           Expanded(
+             child: Container(
+               color:  Colors.red ,
+               child: const Text( 
+                 'omar',
+                 style: TextStyle(
+                   color: Colors.white,
+                   fontSize: 30.0,
+                
+                 ),
+               ),
+             ),
+           ),
+           Expanded(
+             child: Container(
+               color:  Colors.green ,
+               child: const Text(
+                 'omar2',
+                 style: TextStyle(
+                   color: Colors.white,
+                   fontSize: 30.0,
+                 ),
+               ),
+             ),
+           ),
+           Expanded(
+             child: Container(
+               color:  Colors.blue ,
+               child: const Text(
+                 'omar3',
+                 style: TextStyle(
+                   color: Colors.white,
+                   fontSize: 30.0,
+                 ),
+               ),
+             ),
+           ),
+           Expanded(
+             child: Container(
+               color:  Colors.amber ,
+               child: const Text(
+                 'omar4',
+                 style: TextStyle(
+                   color: Colors.white,
+                   fontSize: 30.0,
+                 ),
+               ),
+             ),
+           ),
+          
+        ],
+        ),
     );
   }
 
