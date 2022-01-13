@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget
             ), 
           // ignore: avoid_print
           onPressed: () { _navigateToNextcolumn(context);},
-           ),
+          ),
         ],
         
       ),
