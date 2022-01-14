@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tebiyancode/messenger_screen.dart';
+import 'package:tebiyancode/messenger_listview_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp  extends StatelessWidget
       // ignore: prefer_const_constructors
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:   const MessengerScreen()
+        home:   const MessengerListviewScreen()
       ) ;
     }
 }
