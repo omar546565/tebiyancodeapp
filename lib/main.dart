@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tebiyancode/bmi_screen.dart';
 
 import 'counter_screen.dart';
 
@@ -18,7 +19,7 @@ class MyApp  extends StatelessWidget
       // ignore: prefer_const_constructors
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:    counterScreen()
+        home:    BmiScreen()
       ) ;
     }
 }
