@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tebiyancode/bmi_screen.dart';
 
 
-import 'counter_screen.dart';
-
 
 void main() {
   runApp(const MyApp());
