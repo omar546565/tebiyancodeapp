@@ -28,7 +28,8 @@ class _HomeLayoutState extends State<HomeLayout>
 
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -37,7 +38,11 @@ class _HomeLayoutState extends State<HomeLayout>
       ),
       body: screens[currentIndex] ,
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: () async
+        {
+          var name = await getName();
+          print(name);
+        },
         child: Icon(
           Icons.add,
         ),
@@ -73,5 +78,12 @@ class _HomeLayoutState extends State<HomeLayout>
         ],
       ),
     );
+  }
+
+//Instance of 'Future<String>'
+
+  Future<String> getName() async
+  {
+    return 'Ahmed Ali';
   }
 }
