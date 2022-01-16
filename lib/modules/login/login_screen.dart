@@ -9,11 +9,23 @@ import 'package:tebiyancode/shared/companents/companents.dart';
 //4.clean code
 
 // ignore: must_be_immutable
-class LoginScreen extends StatelessWidget {
-    LoginScreen ({ Key? key }) : super(key: key);
+class LoginScreen extends StatefulWidget {
+
+
+  LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   var emailController = TextEditingController();
+
   var passwordController = TextEditingController();
+
   var formKey = GlobalKey<FormState>();
+
+  bool isPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -38,63 +50,40 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(
                   height: 05.0,
                 ),
-                TextFormField(
-                  controller: emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  onFieldSubmitted: (String value){
-                  // ignore: avoid_print
-                  print(value);
-                  },
-                  onChanged: (String value){
-                  // ignore: avoid_print
-                  print(value);
-                  },
-                  validator: (value){
-                    if(value!.isEmpty){
-                      return 'email must not be empty';
-                    }
-                    return null;
-                  },
-                  decoration: const InputDecoration(
-                    labelText: 'email',
-                    prefixIcon: Icon(
-                      Icons.email,
+                  defaultFormField(
+                      controller: emailController,
+                      type: TextInputType.emailAddress,
+                      label: 'Email',
+                      prefix: Icons.email,
+                    validate: (value){
+                      if(value!.isEmpty){
+                        return 'email must not be empty';
+                      }
+                      return null;
+                    },
                       ),
-                    border: OutlineInputBorder(),
-                  ),
-                ),
                 const SizedBox(
                   height: 05.0,
                   ),
-                TextFormField(
-                  controller: passwordController,
-                  keyboardType: TextInputType.visiblePassword,
-                  obscureText: true,
-                  onFieldSubmitted: (String value){
-                  // ignore: avoid_print
-                  print(value);
-                  },
-                  onChanged: (String value){
-                  // ignore: avoid_print
-                  print(value);
-                  },
-                  validator: (value){
-                    if(value!.isEmpty){
-                      return 'password must not be empty';
-                    }
-                    return null;
-                  },
-                  decoration: const InputDecoration(
-                    labelText: 'password',
-                    prefixIcon: Icon(
-                      Icons.lock,
-                      ),
-                    suffixIcon: Icon(
-                      Icons.remove_red_eye,
-                      ),
-                    border: OutlineInputBorder(),
+                  defaultFormField(
+                    controller: passwordController,
+                    type: TextInputType.visiblePassword,
+                    label: 'password',
+                    prefix: Icons.lock,
+                    suffix: isPassword ? Icons.visibility :Icons.visibility_off ,
+                    isPassword: isPassword,
+                    suffixPressed:(){
+                      setState(() {
+                        isPassword = !isPassword;
+                      });
+                    },
+                    validate: (value){
+                      if(value!.isEmpty){
+                        return 'password is too short';
+                      }
+                      return null;
+                    },
                   ),
-                ),
                 const SizedBox(
                   height: 05.0,
                 ),

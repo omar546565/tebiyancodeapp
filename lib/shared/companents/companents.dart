@@ -29,3 +29,35 @@ Widget defaultButton({
   ),
 );
 
+Widget defaultFormField({
+  required TextEditingController controller,
+  required TextInputType type,
+  required String label,
+  required IconData prefix,
+  required String? Function(dynamic value) validate,
+  Function(String value)? onFieldSubmit,
+  Function(String value)? onChange,
+  bool isPassword = false,
+  IconData? suffix,
+  Function()? suffixPressed,
+
+})=>TextFormField(
+  controller: controller,
+  keyboardType: type,
+  obscureText: isPassword,
+  validator:validate,
+
+  decoration:  InputDecoration(
+    labelText: label,
+    suffixIcon:suffix != null ? IconButton(
+      icon: Icon(
+        suffix,
+      ),
+      onPressed: suffixPressed,
+    ): null,
+
+    border: OutlineInputBorder(),
+  ),
+  onFieldSubmitted: onFieldSubmit,
+  onChanged: onChange,
+);
