@@ -40,8 +40,19 @@ class _HomeLayoutState extends State<HomeLayout>
       floatingActionButton: FloatingActionButton(
         onPressed: () async
         {
-          var name = await getName();
+          try{var name = await
+          getName();
           print(name);
+       //   throw('some error !!!!!!!!');
+          }
+          catch(error)
+          {
+            print('error${error.toString()}');
+          }
+
+        //  getName().then((value){print(value);print('osama');// throw('!!! أنا عملت إيروور');
+        //  }).catchError((error){print('error${error.toString()}');});
+
         },
         child: Icon(
           Icons.add,
