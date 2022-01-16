@@ -1,6 +1,12 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:tebiyancode/shared/companents/companents.dart';
+
+//resusble components
+
+//1.timing
+//2.refactor
+//3.quality
+//4.clean code
 
 // ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
@@ -77,24 +83,28 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(
                 height: 05.0,
               ),
-              Container(
-                width: double.infinity,
-                color: Colors.blue,
-                child: MaterialButton(
-                  onPressed: (){
-                    // ignore: avoid_print
-                    print(emailController.text,);
-                    // ignore: avoid_print
-                    print(passwordController.text,);
-                  },
-                  child: const Text(
-                    'تسجيل الدخول',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                    ),
-                ),
+               defaultButton(
+                 function: (){
+                     print(emailController.text);
+                     print(passwordController.text);
+                   },
+                 text: 'login',
+                 fontsize: 25.0,
+                   ),
+                const SizedBox(
+                height: 05.0,
               ),
+               defaultButton(
+                 function: (){
+                     print(emailController.text);
+                     print(passwordController.text);
+                   },
+                 text: 'تسجيل الدخول',
+                 isUpperCase: false,
+                 background: Colors.red,
+                 width: 200.0,
+                 radius: 25.0,
+                   ),
             const SizedBox(
                 height: 05.0,
                 ),
