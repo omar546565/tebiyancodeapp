@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 
 import '../modules/archive_tasks/archive_tasks_screen.dart';
 import '../modules/done_tasks/done_tasks_screen.dart';
@@ -10,6 +11,15 @@ class HomeLayout extends StatefulWidget {
   @override
   State<HomeLayout> createState() => _HomeLayoutState();
 }
+
+//1.create database
+//2.create tables
+//3.open database
+//4.insert to database
+//5.get from database
+//6.update in database
+//7.delete from database
+
 
 class _HomeLayoutState extends State<HomeLayout>
 {
@@ -25,6 +35,11 @@ class _HomeLayoutState extends State<HomeLayout>
    'Archive' ,
   ];
 
+  @override
+  void initState() {
+    super.initState();
+    createDatabase();
+  }
 
 
   @override
@@ -96,5 +111,31 @@ class _HomeLayoutState extends State<HomeLayout>
   Future<String> getName() async
   {
     return 'Ahmed Ali';
+  }
+
+  void createDatabase() async
+  {
+   var database = await openDatabase(
+    'todo.db',
+     version: 1,
+     onCreate: (database, version)
+       {
+         print('database Created');
+         database.execute('CREATE TABLE tasks (id INTEGER PRIMARY KEY,title TEXT,data TEXT,time TEXT,status TEXT )').then((value){
+
+         }).catchError((onError){
+           print('onError when creating table ${onError.toString()}');
+         });
+       },
+     onOpen: (database)
+       {
+         print('database Opened');
+       },
+
+   );
+  }
+  void insertToDatabase()
+  {
+
   }
 }
