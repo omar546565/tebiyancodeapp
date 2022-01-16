@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tebiyancode/home_screen.dart';
+import 'package:tebiyancode/modules/home/home_screen.dart';
 
 class HomeScreenExdented extends StatelessWidget 
 {
