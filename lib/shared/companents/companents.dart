@@ -37,15 +37,19 @@ Widget defaultFormField({
   required String? Function(dynamic value) validate,
   Function(String value)? onFieldSubmit,
   Function(String value)? onChange,
+
   bool isPassword = false,
+  bool isClickable = true,
   IconData? suffix,
   Function()? suffixPressed,
+  Function()? onTap,
 
 })=>TextFormField(
   controller: controller,
   keyboardType: type,
   obscureText: isPassword,
   validator:validate,
+  enabled:isClickable,
 
   decoration:  InputDecoration(
     labelText: label,
@@ -60,4 +64,6 @@ Widget defaultFormField({
   ),
   onFieldSubmitted: onFieldSubmit,
   onChanged: onChange,
+    onTap :onTap,
+
 );
