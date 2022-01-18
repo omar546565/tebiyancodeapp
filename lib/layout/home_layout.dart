@@ -46,6 +46,8 @@ class _HomeLayoutState extends State<HomeLayout>
   var timeController = TextEditingController();
   var dateController = TextEditingController();
 
+  List<Map> tasks =[];
+
   @override
   void initState() {
     super.initState();
@@ -68,7 +70,8 @@ class _HomeLayoutState extends State<HomeLayout>
         onPressed: () async
         {
           if(isBottomSheetShown){
-            if(formKey.currentState!.validate()){
+            if(formKey.currentState!.validate())
+            {
               insertToDatabase(
                 title: titleController.text,
                 time: timeController.text,
@@ -170,7 +173,12 @@ class _HomeLayoutState extends State<HomeLayout>
                     ),
                   ),
               elevation: 20.0,
-            );
+            ).closed.then((value) {
+              isBottomSheetShown =false;
+              setState(() {
+                fabIcon = Icons.edit;
+              });
+            });
             isBottomSheetShown =true;
             setState(() {
               fabIcon = Icons.add;
@@ -247,11 +255,24 @@ class _HomeLayoutState extends State<HomeLayout>
        },
      onOpen: (database)
        {
+          getDataFromDatabase(database).then((value)
+          {
+            tasks = value;
+            print(tasks);
+          });
          print('database Opened');
        },
 
    );
   }
+
+
+  Future<List<Map>> getDataFromDatabase(database) async
+  {
+ return   await  database.rawQuery('SELECT * FROM tasks');
+
+  }
+
   Future insertToDatabase({
     required String title,
     required String time,
@@ -270,4 +291,7 @@ class _HomeLayoutState extends State<HomeLayout>
       return null;
     });
   }
+
+
+
 }
