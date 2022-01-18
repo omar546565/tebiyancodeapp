@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tebiyancode/modules/login/login_screen.dart';
 
 import 'layout/home_layout.dart';
+import 'modules/counter/counter_screen.dart';
 
 
 
@@ -20,7 +21,7 @@ class MyApp  extends StatelessWidget
       // ignore: prefer_const_constructors
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:    HomeLayout()
+        home:    counterScreen()
       ) ;
     }
 }

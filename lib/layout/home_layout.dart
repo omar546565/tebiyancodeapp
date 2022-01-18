@@ -6,6 +6,7 @@ import 'package:tebiyancode/shared/companents/companents.dart';
 import '../modules/archive_tasks/archive_tasks_screen.dart';
 import '../modules/done_tasks/done_tasks_screen.dart';
 import '../modules/new_tasks/new_tasks_screen.dart';
+import '../shared/companents/constants.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({Key? key}) : super(key: key);
@@ -46,7 +47,7 @@ class _HomeLayoutState extends State<HomeLayout>
   var timeController = TextEditingController();
   var dateController = TextEditingController();
 
-  List<Map> tasks =[];
+
 
   @override
   void initState() {
@@ -65,7 +66,7 @@ class _HomeLayoutState extends State<HomeLayout>
           titles[currentIndex],
         ),
       ),
-      body: screens[currentIndex] ,
+      body: tasks.length == 0 ? Center(child: CircularProgressIndicator()) : screens[currentIndex] ,
       floatingActionButton: FloatingActionButton(
         onPressed: () async
         {
@@ -77,17 +78,20 @@ class _HomeLayoutState extends State<HomeLayout>
                 time: timeController.text,
                 date: dateController.text,
               ).then((value) {
-                Navigator.pop(context);
-                isBottomSheetShown =false;
-                setState(() {
-                  fabIcon = Icons.edit;
+
+                getDataFromDatabase(database).then((value)
+                {
+
+                  Navigator.pop(context);
+
+                  setState(() {
+                    isBottomSheetShown =false;
+                    fabIcon = Icons.edit;
+                    tasks = value;
+                  });
                 });
               });
-
             }
-
-
-
           }else{
             scaffoldKey.currentState!.showBottomSheet(
                   (context) => Container(
@@ -257,12 +261,14 @@ class _HomeLayoutState extends State<HomeLayout>
        {
           getDataFromDatabase(database).then((value)
           {
-            tasks = value;
-            print(tasks);
+            setState(() {
+              tasks = value;
+            });
+
+
           });
          print('database Opened');
        },
-
    );
   }
 
@@ -282,7 +288,7 @@ class _HomeLayoutState extends State<HomeLayout>
   return await database.transaction((txn)async
     {
       txn.rawInsert(
-          'INSERT INTO tasks(title,data,time,status) VALUES("$title","$time","$date","NEW")'
+          'INSERT INTO tasks(title,time,data,status) VALUES("$title","$time","$date","NEW")'
       ).then((value) {
          print('$value insert successfully');
       }).catchError((error){
