@@ -1,12 +1,23 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:tebiyancode/modules/login/login_screen.dart';
+import 'package:tebiyancode/shared/bloc_observer.dart';
 
 import 'layout/home_layout.dart';
 import 'modules/counter/counter_screen.dart';
+import 'modules/counter/cubit/cubit.dart';
+import 'shared/cubit/cubit.dart';
 
 
 
 void main() {
+  BlocOverrides.runZoned(
+        () {
+      // Use cubits...
+          AppCubit();
+    },
+    blocObserver: MyBlocObserver(),
+  );
   runApp(const MyApp());
 
 }
@@ -21,7 +32,7 @@ class MyApp  extends StatelessWidget
       // ignore: prefer_const_constructors
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:    counterScreen()
+        home:    HomeLayout()
       ) ;
     }
 }
