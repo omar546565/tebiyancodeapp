@@ -1,9 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tebiyancode/modules/login/login_screen.dart';
 import 'package:tebiyancode/shared/bloc_observer.dart';
+import 'package:tebiyancode/shared/network/remote/dio_helper.dart';
 
-import 'layout/home_layout.dart';
+import 'layout/news_app/cubit/cubit.dart';
+import 'layout/news_app/news_layout.dart';
+import 'layout/todo-app/todo_layout.dart';
 import 'modules/counter/counter_screen.dart';
 import 'modules/counter/cubit/cubit.dart';
 import 'shared/cubit/cubit.dart';
@@ -14,10 +18,13 @@ void main() {
   BlocOverrides.runZoned(
         () {
       // Use cubits...
-          AppCubit();
+          NewsCubit();
     },
     blocObserver: MyBlocObserver(),
   );
+
+  DioHelper.init();
+
   runApp(const MyApp());
 
 }
@@ -32,7 +39,64 @@ class MyApp  extends StatelessWidget
       // ignore: prefer_const_constructors
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:    HomeLayout()
+        theme: ThemeData(
+          scaffoldBackgroundColor:Colors.white ,
+          appBarTheme: AppBarTheme(
+            backwardsCompatibility:false,
+            systemOverlayStyle: SystemUiOverlayStyle(
+              statusBarColor: Colors.white,
+              statusBarIconBrightness: Brightness.dark,
+            ),
+            backgroundColor: Colors.white,
+            elevation: 0.0,
+            titleTextStyle: TextStyle(
+              color: Colors.black,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+            iconTheme: IconThemeData(
+              color: Colors.black,
+            ),
+          ),
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: Colors.deepOrange,
+          ) ,
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: Colors.deepOrange,
+            elevation: 50.0,
+          ) ,
+        ),
+         darkTheme: ThemeData(
+           scaffoldBackgroundColor:Colors.black ,
+           appBarTheme: AppBarTheme(
+             backwardsCompatibility:false,
+             systemOverlayStyle: SystemUiOverlayStyle(
+               statusBarColor: Colors.white,
+               statusBarIconBrightness: Brightness.dark,
+             ),
+             backgroundColor: Colors.black,
+             elevation: 0.0,
+             titleTextStyle: TextStyle(
+               color: Colors.white,
+               fontSize: 20.0,
+               fontWeight: FontWeight.bold,
+             ),
+             iconTheme: IconThemeData(
+               color: Colors.white,
+             ),
+           ),
+           bottomNavigationBarTheme: BottomNavigationBarThemeData(
+             type: BottomNavigationBarType.fixed,
+             selectedItemColor: Colors.deepOrange,
+             elevation: 50.0,
+           ) ,
+         ),
+         themeMode: ThemeMode.light,
+         home: Directionality(
+           textDirection: TextDirection.rtl,
+             child: NewsLayout(),
+         ),
       ) ;
     }
 }

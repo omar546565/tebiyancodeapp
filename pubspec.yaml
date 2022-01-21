@@ -38,6 +38,7 @@ dependencies:
   intl: ^0.17.0
   bloc: ^8.0.2
   flutter_bloc: ^8.0.1
+  dio: ^4.0.4
 
 dev_dependencies:
   flutter_test:
