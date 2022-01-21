@@ -5,9 +5,6 @@ import 'package:tebiyancode/home_screen_column.dart';
 class HomeScreenRow extends StatelessWidget 
 {
   const HomeScreenRow({Key? key}) : super(key: key);
-
-  
-
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
