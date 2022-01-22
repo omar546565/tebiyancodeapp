@@ -6,6 +6,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:tebiyancode/modules/login/login_screen.dart';
 import 'package:tebiyancode/shared/bloc_observer.dart';
 import 'package:tebiyancode/shared/cubit/states.dart';
+import 'package:tebiyancode/shared/network/local/cache_helper.dart';
 import 'package:tebiyancode/shared/network/remote/dio_helper.dart';
 
 import 'layout/news_app/cubit/cubit.dart';
@@ -17,7 +18,10 @@ import 'shared/cubit/cubit.dart';
 
 
 
-void main() {
+void main() async {
+
+   WidgetsFlutterBinding.ensureInitialized();
+
   BlocOverrides.runZoned(
         () {
       // Use cubits...
@@ -27,21 +31,28 @@ void main() {
   );
 
   DioHelper.init();
+ await  CacheHelper.init();
 
-  runApp(const MyApp());
+ bool? isDark = CacheHelper.getBoolean(key: 'isDark');
+
+  runApp( MyApp(isDark));
 
 }
 
 class MyApp  extends StatelessWidget
 {
-  const MyApp({Key? key}) : super(key: key);
+  late final bool? isDark;
+
+  MyApp(this.isDark);
 
     @override
     Widget build(BuildContext context) 
     {
       // ignore: prefer_const_constructors
       return BlocProvider(
-        create: (BuildContext context) => AppCubit(),
+        create: (BuildContext context) => AppCubit()..changeAppMode(
+          fromShared: isDark,
+        ),
         child: BlocConsumer<AppCubit, AppStates>(
            listener: (context , state) {},
            builder: (context, state) {
