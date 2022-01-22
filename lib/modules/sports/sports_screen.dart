@@ -22,7 +22,7 @@ class SportsScreen extends StatelessWidget {
           physics: BouncingScrollPhysics(),
           itemBuilder: (context, index) => bulidArticleItem(list[index],context),
           separatorBuilder: (context, index) =>myDivider(),
-          itemCount: 10,
+          itemCount: list.length,
         );
       },
 

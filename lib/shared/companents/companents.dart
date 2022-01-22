@@ -204,7 +204,7 @@ Widget bulidArticleItem(article, context) => Padding(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0,),
           image: DecorationImage(
-            image: NetworkImage('${article['urlToImage']}'),
+            image: NetworkImage('${article['center']}'),
             fit: BoxFit.cover,
           ),
         ),
@@ -220,14 +220,14 @@ Widget bulidArticleItem(article, context) => Padding(
             children: [
               Expanded(
                 child: Text(
-                  '${article['title']}',
+                  '${article['ring']}',
                   style: Theme.of(context).textTheme.bodyText1,
                   maxLines: 4,
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
               Text(
-                '${article['publishedAt']}',
+                '${article['datanews']}',
                 style: TextStyle(
                   color: Colors.grey,
                   fontSize: 18.0,
@@ -243,3 +243,12 @@ Widget bulidArticleItem(article, context) => Padding(
     ],
   ),
 );
+
+
+void navigateTo(context,widget)=> Navigator.push
+  (
+  context,
+  MaterialPageRoute(
+    builder:(context)=> widget,
+    ),
+  );

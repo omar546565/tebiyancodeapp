@@ -21,6 +21,7 @@ import 'shared/cubit/cubit.dart';
 void main() async {
 
    WidgetsFlutterBinding.ensureInitialized();
+   //بيتأكد أن كل حاجة هنا في الميثود خلصت وبعدين بفتح الابلكيشن
 
   BlocOverrides.runZoned(
         () {
@@ -49,10 +50,15 @@ class MyApp  extends StatelessWidget
     Widget build(BuildContext context) 
     {
       // ignore: prefer_const_constructors
-      return BlocProvider(
-        create: (BuildContext context) => AppCubit()..changeAppMode(
-          fromShared: isDark,
-        ),
+      return MultiBlocProvider(
+        providers:
+        [
+          BlocProvider(create: (context)=>  NewsCubit()..getBusiness()),
+          BlocProvider(  create: (BuildContext context) => AppCubit()..changeAppMode(
+               fromShared: isDark,
+                        ),
+          ),
+        ],
         child: BlocConsumer<AppCubit, AppStates>(
            listener: (context , state) {},
            builder: (context, state) {
@@ -130,6 +136,7 @@ class MyApp  extends StatelessWidget
              color: Colors.white,
              ),
              ),
+
              ),
              themeMode: AppCubit.get(context).isDark ? ThemeMode.dark :  ThemeMode.light ,
              home: Directionality(

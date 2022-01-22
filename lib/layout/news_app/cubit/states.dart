@@ -33,3 +33,13 @@ class NewsgetScienceErrorState extends NewsStates {
   NewsgetScienceErrorState(this.error);
 
 }
+
+class NewsgetSearchLoadingState extends NewsStates {}
+
+class NewsgetSearchSuccessState extends NewsStates {}
+
+class NewsgetSearchErrorState extends NewsStates {
+  final String error;
+  NewsgetSearchErrorState(this.error);
+
+}
