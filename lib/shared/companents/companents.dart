@@ -194,7 +194,7 @@ Widget myDivider() => Padding(
   ),
 );
 
-Widget bulidArticleItem(article) => Padding(
+Widget bulidArticleItem(article, context) => Padding(
   padding: const EdgeInsets.all(20.0),
   child: Row(
     children: [
@@ -221,10 +221,7 @@ Widget bulidArticleItem(article) => Padding(
               Expanded(
                 child: Text(
                   '${article['title']}',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText1,
                   maxLines: 4,
                   overflow: TextOverflow.ellipsis,
                 ),
