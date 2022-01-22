@@ -43,7 +43,7 @@ class SearchScreen extends StatelessWidget {
                 ),
 
                 Expanded(
-                  child:   list.length == 0  ? Center(child: CircularProgressIndicator()) : ListView.separated(
+                  child:   list.length == 0  ? Center(child: Text('ابحث هنا',style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold,color: Colors.orange,),),) : ListView.separated(
                       physics: BouncingScrollPhysics(),
                       itemBuilder:  (context, index) => bulidArticleItem(list[index], context),
                       separatorBuilder: (context, index) =>myDivider(),
