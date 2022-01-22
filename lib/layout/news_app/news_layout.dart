@@ -4,6 +4,8 @@ import 'package:tebiyancode/layout/news_app/cubit/cubit.dart';
 import 'package:tebiyancode/layout/news_app/cubit/states.dart';
 import 'package:tebiyancode/shared/network/remote/dio_helper.dart';
 
+import '../../shared/cubit/cubit.dart';
+
 class NewsLayout extends StatelessWidget
 {
   const NewsLayout({Key? key}) : super(key: key);
@@ -29,7 +31,10 @@ class NewsLayout extends StatelessWidget
                     icon: Icon(Icons.search),
                 ),
                 IconButton(
-                    onPressed: (){},
+                    onPressed: ()
+                    {
+                      AppCubit.get(context).changeAppMode();
+                    },
                     icon: Icon(Icons.brightness_4_outlined),
                 ),
               ],
