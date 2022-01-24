@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:tebiyancode/modules/shop_app/login/shop_login_screen.dart';
+import 'package:tebiyancode/shared/companents/companents.dart';
+import 'package:tebiyancode/shared/network/local/cache_helper.dart';
 
 import '../../../shared/styles/colors.dart';
 
@@ -21,10 +24,18 @@ class BoardignModel
 
 
 
-class OnBoardingScreen extends StatelessWidget {
+class OnBoardingScreen extends StatefulWidget
+{
+  @override
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+}
+
+class _OnBoardingScreenState extends State<OnBoardingScreen>
+{
   var boardController = PageController();
 
-  List<BoardignModel> boarding = [
+  List<BoardignModel> boarding =
+  [
     BoardignModel( image:'assets/images/onboard_1.jpg',
       title: 'onboard_1 title',
       body: 'onboard_1 body',),
@@ -36,10 +47,38 @@ class OnBoardingScreen extends StatelessWidget {
       body: 'onboard_3 body',),
   ];
 
+  bool isLast = false;
+  void submit()
+  {
+    CacheHelper.saveData(key: 'onBoarding', value: true,).then((value) {
+      if(value)
+        {
+          navigateAndFinish(context, ShopLoginScreen());
+        }
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+        TextButton(
+            onPressed: ()
+            {
+             submit();
+            },
+            child: Text(
+              'Skip',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.deepOrange,
+              ),
+            ),
+        ),
+      ],
+      ),
       body:Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
@@ -50,6 +89,22 @@ class OnBoardingScreen extends StatelessWidget {
                 PageView.builder(
                   physics: BouncingScrollPhysics(),
                   controller: boardController,
+                  onPageChanged: (int index)
+                  {
+                    if(index == boarding.length - 1){
+                     setState(() {
+                       isLast =true;
+
+                     });
+
+                    }else{
+                      setState(() {
+                        isLast =false;
+
+                      });
+
+                    }
+                  },
                   itemBuilder:(context,index)=>buildBoardingItem(boarding[index]),
                   itemCount: 3,
                 ),
@@ -74,12 +129,17 @@ class OnBoardingScreen extends StatelessWidget {
                  Spacer(),
                  FloatingActionButton(onPressed: ()
                  {
-                   boardController.nextPage(
+                   if(isLast){
+                     submit();
+                   }else{
+                     boardController.nextPage(
                        duration: Duration(
                          milliseconds: 750,
                        ),
                        curve: Curves.fastLinearToSlowEaseIn,
-                   );
+                     );
+                   }
+
                  },
                  child: Icon(Icons.arrow_forward_ios),
                  ),
@@ -90,6 +150,7 @@ class OnBoardingScreen extends StatelessWidget {
       ),
     );
   }
+
   Widget buildBoardingItem(BoardignModel model) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [

@@ -32,6 +32,18 @@ Widget defaultButton({
   ),
 );
 
+Widget defaultTextButton({
+  required Function() function,
+  required String text,
+})=>TextButton(
+  onPressed:function,
+  child: Text(text.toString(),
+    style: TextStyle(
+      fontSize: 18.0,
+    ),
+  ),
+);
+
 Widget defaultFormField(
     {
   required TextEditingController controller,
@@ -306,4 +318,13 @@ void navigateTo(context,widget)=> Navigator.push
   MaterialPageRoute(
     builder:(context)=> widget,
     ),
+  );
+
+void navigateAndFinish(context,widget)=> Navigator.pushAndRemoveUntil
+  (
+  context,
+  MaterialPageRoute(
+    builder:(context)=> widget,
+    ),
+        (Route<dynamic>route) {return false;} ,
   );
