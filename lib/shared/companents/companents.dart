@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tebiyancode/modules/web_view/web_view_screen.dart';
 import 'package:tebiyancode/shared/cubit/cubit.dart';
+
+import '../../modules/news_app/web_view/web_view_screen.dart';
 
 Widget defaultButton({
   double width = double.infinity,

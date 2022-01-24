@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../models/user/user_model.dart';
+import '../../../models/user/user_model.dart';
+
 
 
 

@@ -42,6 +42,8 @@ dependencies:
   hexcolor: ^2.0.6
   shared_preferences: ^2.0.12
   webview_flutter: ^3.0.0
+  smooth_page_indicator: ^1.0.0+2
+
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +69,11 @@ flutter:
 
   assets:
     - assets/images/
+  fonts:
+    - family: Jannah
+      fonts:
+       - asset: assets/fonts/Jannah.ttf
+         weight: 700
   # To add assets to your application, add an assets section, like this:
 
 

@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tebiyancode/shared/companents/companents.dart';
 import 'package:tebiyancode/shared/cubit/cubit.dart';
 
-import '../../shared/companents/constants.dart';
-import '../../shared/cubit/states.dart';
+import '../../../shared/cubit/states.dart';
 
 class NewTasksScreen extends StatelessWidget {
 

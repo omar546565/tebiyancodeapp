@@ -4,9 +4,11 @@ import 'package:sqflite/sqflite.dart';
 import 'package:tebiyancode/shared/cubit/states.dart';
 import 'package:tebiyancode/shared/network/local/cache_helper.dart';
 
-import '../../modules/archive_tasks/archive_tasks_screen.dart';
-import '../../modules/done_tasks/done_tasks_screen.dart';
-import '../../modules/new_tasks/new_tasks_screen.dart';
+import '../../modules/todo_app/archive_tasks/archive_tasks_screen.dart';
+import '../../modules/todo_app/done_tasks/done_tasks_screen.dart';
+import '../../modules/todo_app/new_tasks/new_tasks_screen.dart';
+
+
 
 class AppCubit extends Cubit<AppStates>
 {

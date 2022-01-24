@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tebiyancode/layout/news_app/cubit/states.dart';
-import 'package:tebiyancode/modules/business/business_screen.dart';
-import 'package:tebiyancode/modules/science/science_screen.dart';
-import 'package:tebiyancode/modules/settings_screen/settings_screen.dart';
-import 'package:tebiyancode/modules/sports/sports_screen.dart';
-
+import '../../../modules/news_app/business/business_screen.dart';
+import '../../../modules/news_app/science/science_screen.dart';
+import '../../../modules/news_app/sports/sports_screen.dart';
+import '../../../modules/shop_app/settings_screen/settings_screen.dart';
 import '../../../shared/network/remote/dio_helper.dart';
 
 class NewsCubit extends Cubit<NewsStates>

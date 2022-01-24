@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tebiyancode/layout/news_app/cubit/cubit.dart';
 import 'package:tebiyancode/layout/news_app/cubit/states.dart';
-import 'package:tebiyancode/modules/search/search_screen.dart';
 import 'package:tebiyancode/shared/companents/companents.dart';
 import 'package:tebiyancode/shared/network/remote/dio_helper.dart';
 
+import '../../modules/news_app/search/search_screen.dart';
 import '../../shared/cubit/cubit.dart';
 
 class NewsLayout extends StatelessWidget

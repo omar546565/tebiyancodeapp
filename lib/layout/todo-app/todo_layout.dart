@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:tebiyancode/shared/companents/companents.dart';
 import 'package:tebiyancode/shared/cubit/cubit.dart';
 import 'package:tebiyancode/shared/cubit/states.dart';
-
-import '../../modules/archive_tasks/archive_tasks_screen.dart';
-import '../../modules/done_tasks/done_tasks_screen.dart';
-import '../../modules/new_tasks/new_tasks_screen.dart';
-import '../../shared/companents/constants.dart';
 
 //1.create database
 //2.create tables
