@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:tebiyancode/layout/shop_app/shop_layout.dart';
+import 'package:tebiyancode/modules/shop_app/login/shop_login_screen.dart';
 import 'package:tebiyancode/modules/shop_app/on_boarding/on_boarding_screen.dart';
 import 'package:tebiyancode/shared/bloc_observer.dart';
 import 'package:tebiyancode/shared/cubit/states.dart';
@@ -31,17 +33,36 @@ void main() async {
   DioHelper.init();
  await  CacheHelper.init();
 
- bool? isDark = CacheHelper.getBoolean(key: 'isDark');
+ bool? isDark = CacheHelper.getData(key: 'isDark');
 
-  runApp( MyApp(isDark));
+ Widget widget;
+
+ bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
+ String? token = CacheHelper.getData(key: 'token');
+
+ if(onBoarding != null){
+   if(token != null) widget = ShopLayout();
+   else widget = ShopLoginScreen();
+ }else{
+   widget = OnBoardingScreen();
+ }
+
+  runApp( MyApp(
+      isDark: isDark,
+    startWidget: widget,
+  ));
 
 }
 
 class MyApp  extends StatelessWidget
 {
   late final bool? isDark;
+  late final Widget? startWidget;
 
-  MyApp(this.isDark);
+  MyApp({
+    this.isDark,
+    this.startWidget,
+  });
 
     @override
     Widget build(BuildContext context) 
@@ -66,7 +87,7 @@ class MyApp  extends StatelessWidget
              themeMode: AppCubit.get(context).isDark ? ThemeMode.dark :  ThemeMode.light ,
              home: Directionality(
              textDirection: TextDirection.ltr,
-             child: OnBoardingScreen(),
+             child: startWidget!,
              ),
              );
            },

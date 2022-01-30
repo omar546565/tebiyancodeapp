@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tebiyancode/shared/cubit/cubit.dart';
 
 import '../../modules/news_app/web_view/web_view_screen.dart';
@@ -328,3 +329,46 @@ void navigateAndFinish(context,widget)=> Navigator.pushAndRemoveUntil
     ),
         (Route<dynamic>route) {return false;} ,
   );
+
+void showToast({
+
+  required String text ,
+  required ToastStates state ,
+
+}) =>  Fluttertoast.showToast(
+    msg: text,
+    toastLength: Toast.LENGTH_LONG,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 5,
+    backgroundColor: chooseToastColor(state),
+    textColor: Colors.white,
+    fontSize: 16.0
+);
+
+//enum
+
+enum ToastStates {
+  SUCCESS,
+  ERROR,
+  WARNING
+}
+
+Color chooseToastColor(ToastStates state)
+{
+  Color color;
+  switch(state)
+  {
+    case ToastStates.SUCCESS:
+      color = Colors.green;
+      break;
+      case ToastStates.ERROR:
+        color = Colors.red;
+      break;
+      case ToastStates.WARNING:
+        color = Colors.amber;
+      break;
+
+  }
+
+  return color;
+}
