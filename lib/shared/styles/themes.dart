@@ -7,18 +7,18 @@ ThemeData DarkTheme =  ThemeData(
   appBarTheme: AppBarTheme(
     titleSpacing: 20.0,
     backwardsCompatibility:false,
-    systemOverlayStyle: SystemUiOverlayStyle(
+    systemOverlayStyle: const SystemUiOverlayStyle(
       statusBarColor: Colors.white,
       statusBarIconBrightness: Brightness.dark,
     ),
     backgroundColor: HexColor('333739'),
     elevation: 0.0,
-    titleTextStyle: TextStyle(
+    titleTextStyle: const TextStyle(
       color: Colors.white,
       fontSize: 20.0,
       fontWeight: FontWeight.bold,
     ),
-    iconTheme: IconThemeData(
+    iconTheme: const IconThemeData(
       color: Colors.white,
     ),
   ),
@@ -29,7 +29,7 @@ ThemeData DarkTheme =  ThemeData(
     elevation: 50.0,
     backgroundColor: HexColor('333739'),
   ) ,
-  textTheme: TextTheme(
+  textTheme: const TextTheme(
     bodyText1: TextStyle(
       fontSize: 18.0,
       fontWeight: FontWeight.bold,
@@ -41,7 +41,7 @@ ThemeData DarkTheme =  ThemeData(
 );
 ThemeData LightTheme =  ThemeData(
   scaffoldBackgroundColor:Colors.white ,
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     titleSpacing: 20.0,
     backwardsCompatibility:false,
     systemOverlayStyle: SystemUiOverlayStyle(
@@ -59,17 +59,17 @@ ThemeData LightTheme =  ThemeData(
       color: Colors.black,
     ),
   ),
-  floatingActionButtonTheme: FloatingActionButtonThemeData(
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: Colors.deepOrange,
   ) ,
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,
     selectedItemColor: Colors.deepOrange,
     unselectedItemColor: Colors.grey,
     elevation: 50.0,
     backgroundColor: Colors.white,
   ) ,
-  textTheme: TextTheme(
+  textTheme: const TextTheme(
     bodyText1: TextStyle(
       fontSize: 18.0,
       fontWeight: FontWeight.bold,

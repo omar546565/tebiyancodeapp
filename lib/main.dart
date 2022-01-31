@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:tebiyancode/layout/shop_app/cubit/cubit.dart';
 import 'package:tebiyancode/layout/shop_app/shop_layout.dart';
 import 'package:tebiyancode/modules/shop_app/login/shop_login_screen.dart';
 import 'package:tebiyancode/modules/shop_app/on_boarding/on_boarding_screen.dart';
@@ -75,6 +76,8 @@ class MyApp  extends StatelessWidget
           BlocProvider(  create: (BuildContext context) => AppCubit()..changeAppMode(
                fromShared: isDark,
                         ),
+          ),
+          BlocProvider(  create: (BuildContext context) => ShopCubit()
           ),
         ],
         child: BlocConsumer<AppCubit, AppStates>(
