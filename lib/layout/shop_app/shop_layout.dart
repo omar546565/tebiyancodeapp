@@ -7,6 +7,8 @@ import 'package:tebiyancode/modules/shop_app/search-screen/search-screen.dart';
 import 'package:tebiyancode/shared/companents/companents.dart';
 import 'package:tebiyancode/shared/network/local/cache_helper.dart';
 
+import '../../shared/companents/constants.dart';
+
 class ShopLayout extends StatelessWidget {
   const ShopLayout({Key? key}) : super(key: key);
 
@@ -24,7 +26,8 @@ class ShopLayout extends StatelessWidget {
              actions: [
                IconButton(
                  onPressed: (){
-                   navigateTo(context, SearchScreen(),);
+                 /*  navigateTo(context, SearchScreen(),);*/
+                   signOut(context);
                  },
                  icon: Icon(
                  Icons.search,
