@@ -1,35 +1,31 @@
+
 class HomeModel
 {
   late bool status;
   late String message;
   late String data;
 
+  late List<dynamic> banners = [];
+  late List<dynamic> products = [];
 
   HomeModel.fromJson(Map<String, dynamic> json){
     status = json['status'];
     message = json['message'];
+    json['data']['banners'].forEach((element)
+    {
+      banners.add(element);
+    });
 
 
+    json['data']['products'].forEach((element)
+    {
+      products.add(element);
+    });
   }
 
 }
 
-class HomeDataModel{
 
-  List<BannersModel> banners =[];
-  List<ProductsModel> products =[];
-  HomeDataModel.fromJson(Map<String, dynamic> json)
-  {
-      json['banners'].forEach((element)
-      {
-        banners.add(element);
-      });
-      json['products'].forEach((element)
-      {
-        products.add(element);
-      });
-  }
-}
 
 class BannersModel {
  late int id ;
@@ -38,6 +34,23 @@ class BannersModel {
   {
      id = json['id'];
      image = json['image'];
+  }
+}
+class Address{
+
+  late int id ;
+  late String image;
+
+
+  Address({required this.id, required this.image});
+
+  factory Address.fromJson(Map<String, dynamic> json){
+
+    return Address(
+        id: json["id"],
+      image: json["image"],
+
+    );
   }
 }
 
