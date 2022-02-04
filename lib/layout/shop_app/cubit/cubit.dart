@@ -32,9 +32,9 @@ class ShopCubit extends  Cubit<ShopStates>{
     emit(ShopChangeBottomNavState());
   }
 
-  HomeModel? homeModel;
+  Welcome? welcome;
 
-  BannersModel? bannersModel;
+
 
 
   void getHomeData()
@@ -47,11 +47,11 @@ class ShopCubit extends  Cubit<ShopStates>{
   {
     emit(ShopSuccessHomeState());
 
-    homeModel= HomeModel.fromJson(value.data);
+    welcome= Welcome.fromJson(value.data);
 
 
-    printFullText(homeModel!.banners.toString());
-    printFullText(homeModel!.status.toString());
+
+    printFullText(welcome!.status.toString());
   }).catchError((error){
     print(error.toString(),);
     emit(ShopErrorHomeState());
