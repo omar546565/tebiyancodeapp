@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tebiyancode/layout/shop_app/cubit/states.dart';
 import 'package:tebiyancode/shared/network/end_points.dart';
 
-import '../../../models/shop_app/home_model.dart';
+import '../../../models/shop_app/home_model_shop.dart';
 import '../../../modules/shop_app/categories_screen/categories_screen.dart';
 import '../../../modules/shop_app/favorites-screen/favorites-screen.dart';
 import '../../../modules/shop_app/products_screen/products_screen.dart';
@@ -32,7 +32,7 @@ class ShopCubit extends  Cubit<ShopStates>{
     emit(ShopChangeBottomNavState());
   }
 
-  Welcome? welcome;
+  HomeModel? homeModel;
 
 
 
@@ -45,17 +45,15 @@ class ShopCubit extends  Cubit<ShopStates>{
       token: token,
   ).then((value)
   {
+    homeModel= HomeModel.fromJson(value.data);
+    printFullText(homeModel!.message.toString());
+    printFullText(homeModel!.data.banners[0].image);
+
     emit(ShopSuccessHomeState());
-
-    welcome= Welcome.fromJson(value.data);
-
-
-
-    printFullText(welcome!.status.toString());
   }).catchError((error){
     print(error.toString(),);
-    emit(ShopErrorHomeState());
 
+    emit(ShopErrorHomeState());
   });
 
   }
