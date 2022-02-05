@@ -40,9 +40,11 @@ static  Future<Response> getData({
    String? token ,
 }) async
   {
-    dio.options.headers = {HttpHeaders.userAgentHeader: 'dio',
+    dio.options.headers = {
+      HttpHeaders.userAgentHeader: 'dio',
       'lang': lang,
-      'Authorization': token,
+      'Authorization':'Bearer $token',
+
     };
     return await   dio.post(
       url,
