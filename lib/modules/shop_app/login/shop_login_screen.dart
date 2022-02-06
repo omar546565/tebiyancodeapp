@@ -1,11 +1,14 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tebiyancode/layout/shop_app/cubit/cubit.dart';
 import 'package:tebiyancode/layout/shop_app/shop_layout.dart';
+import 'package:tebiyancode/main.dart';
 import 'package:tebiyancode/modules/shop_app/login/cubit/cubit.dart';
 import 'package:tebiyancode/modules/shop_app/login/cubit/states.dart';
 import 'package:tebiyancode/modules/shop_app/register/shop_register_screen.dart';
 import 'package:tebiyancode/shared/companents/companents.dart';
+import 'package:tebiyancode/shared/companents/constants.dart';
 import 'package:tebiyancode/shared/network/local/cache_helper.dart';
 
 class ShopLoginScreen extends StatelessWidget {
@@ -32,8 +35,7 @@ class ShopLoginScreen extends StatelessWidget {
 
               CacheHelper.saveData(key: 'token', value: state.loginModel.token,).then((value)
               {
-
-
+                token = CacheHelper.getData(key: 'token');
                 navigateAndFinish(context,
                   ShopLayout(),
                 );

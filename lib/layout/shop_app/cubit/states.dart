@@ -44,4 +44,18 @@ class ShopSuccessUserDataState extends ShopStates{
 
 class ShopErrorUserDataState extends ShopStates{}
 
+class ShopLoadingUpdateUserDataState extends ShopStates{}
+
+class ShopUpdateUserDataState extends ShopStates{}
+
+class ShopSuccessUpdateUserDataState extends ShopStates{
+  final ShopLoginModel loginModel;
+
+  ShopSuccessUpdateUserDataState(this.loginModel);
+
+
+}
+
+class ShopErrorUpdateUserDataState extends ShopStates{}
+
 

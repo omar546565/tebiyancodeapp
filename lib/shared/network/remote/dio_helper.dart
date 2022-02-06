@@ -54,4 +54,26 @@ static  Future<Response> getData({
   }
 
 
+ static Future<Response> putData({
+  required String url,
+  Map<String, dynamic>? query,
+  required  Map<String, dynamic> data,
+   String lang = 'ar',
+   String? token ,
+}) async
+  {
+    dio.options.headers = {
+      HttpHeaders.userAgentHeader: 'dio',
+      'lang': lang,
+      'Authorization':'Bearer $token',
+
+    };
+    return await   dio.put(
+      url,
+      queryParameters: query,
+      data: data,
+    );
+  }
+
+
 }
