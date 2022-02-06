@@ -21,7 +21,8 @@ class ShopLoginScreen extends StatelessWidget {
       create: (BuildContext context) => ShopLoginCubit(),
 
       child: BlocConsumer<ShopLoginCubit,ShopLoginStates>(
-        listener:(context,state){
+        listener:(context,state)
+        {
           if(state is ShopLoginSuccessState)
           {
             if(state.loginModel.success){
@@ -31,6 +32,8 @@ class ShopLoginScreen extends StatelessWidget {
 
               CacheHelper.saveData(key: 'token', value: state.loginModel.token,).then((value)
               {
+
+
                 navigateAndFinish(context,
                   ShopLayout(),
                 );

@@ -34,3 +34,14 @@ class ShopSuccessGetFavoritesState extends ShopStates{}
 class ShopErrorGetFavoritesState extends ShopStates{}
 
 
+class ShopLoadingUserDataState extends ShopStates{}
+
+class ShopSuccessUserDataState extends ShopStates{
+  final ShopLoginModel loginModel;
+
+  ShopSuccessUserDataState(this.loginModel);
+}
+
+class ShopErrorUserDataState extends ShopStates{}
+
+

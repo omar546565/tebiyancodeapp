@@ -7,6 +7,7 @@ import 'package:tebiyancode/shared/network/end_points.dart';
 import '../../../models/shop_app/change_favorites_model.dart';
 import '../../../models/shop_app/favorites_model.dart';
 import '../../../models/shop_app/home_model_shop.dart';
+import '../../../models/shop_app/login_model.dart';
 import '../../../modules/shop_app/categories_screen/categories_screen.dart';
 import '../../../modules/shop_app/favorites-screen/favorites-screen.dart';
 import '../../../modules/shop_app/products_screen/products_screen.dart';
@@ -106,6 +107,28 @@ CategoriesModel? categoriesModel;
     print(error.toString(),);
 
     emit(ShopErrorGetFavoritesState());
+  });
+
+  }
+
+  ShopLoginModel? userModel;
+
+  void getUserData()
+  {
+   emit(ShopLoadingUserDataState());
+  DioHelper.getData(
+      url: PROFILE,
+      token: token,
+  ).then((value)
+  {
+    userModel = ShopLoginModel.fromJson(value.data);
+    printFullText(userModel!.name.toString());
+
+    emit(ShopSuccessUserDataState(userModel!));
+  }).catchError((error){
+    print(error.toString(),);
+
+    emit(ShopErrorUserDataState());
   });
 
   }
