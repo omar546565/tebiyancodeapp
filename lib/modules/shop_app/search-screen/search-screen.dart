@@ -122,11 +122,11 @@ class SearchScreen extends StatelessWidget {
                                             Spacer(),
                                             IconButton(
                                               onPressed: (){
-
+                                                ShopCubit.get(context).changeFavorites(ShopSearchCubit.get(context).srearchModel!.products![index].id!.round());
                                               },
                                               icon: CircleAvatar(
                                                 radius: 15.0,
-                                                backgroundColor:Colors.deepOrange    ,
+                                                backgroundColor:ShopCubit.get(context).favorites[ShopSearchCubit.get(context).srearchModel!.products![index].id] == 'true'  ? Colors.deepOrange  : Colors.grey  ,
                                                 child: Icon(
                                                   Icons.favorite_border,
                                                   color: Colors.white,

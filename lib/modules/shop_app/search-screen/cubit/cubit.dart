@@ -22,8 +22,9 @@ class ShopSearchCubit extends  Cubit<ShopSearchStates> {
            url: PRODUCTS_SEARCH,
            token: token,
            data: {
-             'Text':text,
+             'text':text,
            },).then((value) {
+             print(text);
          srearchModel =   SrearchModel.fromJson(value.data);
          emit(ShopSearchSuccessState());
        }).catchError((error){
