@@ -36,6 +36,10 @@ class ShopLoginScreen extends StatelessWidget {
               CacheHelper.saveData(key: 'token', value: state.loginModel.token,).then((value)
               {
                 token = CacheHelper.getData(key: 'token');
+                ShopCubit.get(context).getUserData();
+                ShopCubit.get(context).getFavoritesModel();
+                ShopCubit.get(context).getCategoriesData();
+                ShopCubit.get(context).getHomeData();
                 navigateAndFinish(context,
                   ShopLayout(),
                 );

@@ -35,6 +35,11 @@ class SettingsScreen extends StatelessWidget
                 key: formKey,
                 child: Column(
                   children: [
+                    CircleAvatar(
+                        radius: 50,
+                        backgroundImage: NetworkImage(cubit.userModel!.image.toString()),
+                    ),
+
                     if(state is ShopLoadingUpdateUserDataState)
                     LinearProgressIndicator(),
                     SizedBox(height:20.0,),
@@ -109,6 +114,7 @@ class SettingsScreen extends StatelessWidget
                     defaultButton(
                         function: (){
                           signOut(context);
+                          cubit.getUserOut();
                         },
                         text: 'تسجيل الخروج',
                     ),

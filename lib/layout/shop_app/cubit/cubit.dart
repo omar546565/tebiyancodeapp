@@ -134,6 +134,23 @@ CategoriesModel? categoriesModel;
 
   }
 
+  void getUserOut()
+  {
+   emit(ShopLoadingUserDataState());
+  DioHelper.getData(
+      url: USER_REVOKE,
+      token: token,
+  ).then((value)
+  {
+
+  }).catchError((error){
+    print(error.toString(),);
+
+    emit(ShopErrorUserDataState());
+  });
+
+  }
+
 
 
   void updateUserData({
