@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tebiyancode/layout/social_app/social_layout.dart';
 import 'package:tebiyancode/modules/social_app/social_register/cubit/cubit.dart';
 import 'package:tebiyancode/modules/social_app/social_register/cubit/states.dart';
 import '../../../shared/companents/companents.dart';
@@ -23,31 +24,11 @@ class SocialRegisterScreen extends StatelessWidget {
       create: (BuildContext context) => SocialRegisterCubit(),
       child:BlocConsumer<SocialRegisterCubit, SocialRegisterStates>(
         listener:(context, state) {
-          if(state is SocialRegisterSuccessState)
+          if(state is SocialCreateUserSuccessState)
           {
-          /*  if(state.loginModel.success){
-
-              print(state.loginModel.message);
-              print(state.loginModel.token);
-
-              CacheHelper.saveData(key: 'token', value: state.loginModel.token,).then((value)
-              {
-                token = CacheHelper.getData(key: 'token');
-                navigateAndFinish(context,
-                  SocialLayout(),
-                );
-                showToast(
-                  text: state.loginModel.message,
-                  state: ToastStates.SUCCESS,
-                );
-              },);
-
-            }else{
-              showToast(
-                text: state.loginModel.message,
-                state: ToastStates.ERROR,
-              );
-            }*/
+           navigateAndFinish(context,
+               SocialLayout(),
+           );
           }
 
         },

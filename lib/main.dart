@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:tebiyancode/layout/shop_app/cubit/cubit.dart';
 import 'package:tebiyancode/layout/shop_app/shop_layout.dart';
+import 'package:tebiyancode/layout/social_app/cubit/cubit.dart';
+import 'package:tebiyancode/layout/social_app/social_layout.dart';
 import 'package:tebiyancode/modules/shop_app/login/shop_login_screen.dart';
 import 'package:tebiyancode/modules/shop_app/on_boarding/on_boarding_screen.dart';
 import 'package:tebiyancode/modules/social_app/social_login_screen/social_login_screen.dart';
@@ -44,13 +46,19 @@ void main() async {
 
  bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
  String? token = CacheHelper.getData(key: 'token');
+ var uId = CacheHelper.getData(key: 'uId');
 
- if(onBoarding != null){
+ /*if(onBoarding != null){
    if(token != null) widget = ShopLayout();
    else widget = ShopLoginScreen();
  }else{
    widget = OnBoardingScreen();
- }
+ }*/
+if (uId != null){
+  widget = SocialLayout();
+}else{
+  widget = SocialLoginScreen();
+}
 
   runApp( MyApp(
       isDark: isDark,
@@ -83,6 +91,8 @@ class MyApp  extends StatelessWidget
           ),
           BlocProvider(  create: (BuildContext context) => ShopCubit()..getHomeData()..getCategoriesData()..getFavoritesModel()..getUserData(),
           ),
+          BlocProvider(  create: (BuildContext context) => SocialCubit()..getUserData(),
+          ),
         ],
         child: BlocConsumer<AppCubit, AppStates>(
            listener: (context , state) {},
@@ -92,10 +102,7 @@ class MyApp  extends StatelessWidget
              theme:LightTheme ,
              darkTheme:DarkTheme,
              themeMode: AppCubit.get(context).isDark ? ThemeMode.dark :  ThemeMode.light ,
-             home: Directionality(
-             textDirection: TextDirection.ltr,
-             child: SocialLoginScreen(),
-             ),
+             home: startWidget,
              );
            },
         ),

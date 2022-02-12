@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tebiyancode/layout/social_app/social_layout.dart';
 import 'package:tebiyancode/modules/social_app/social_login_screen/cubit/cubit.dart';
 import 'package:tebiyancode/modules/social_app/social_login_screen/cubit/states.dart';
 import 'package:tebiyancode/modules/social_app/social_register/social_register_screen.dart';
+import 'package:tebiyancode/shared/network/local/cache_helper.dart';
 
 import '../../../shared/companents/companents.dart';
 
@@ -19,10 +21,19 @@ class SocialLoginScreen extends StatelessWidget {
       child: BlocConsumer<SocialLoginCubit,SocialLoginStates>(
         listener: (BuildContext context, state) {
           if(state is SocialLoginErrorState){
-            showToast(text: state.error,state: ToastStates.ERROR,);
-          }else{
-            showToast(text: 'success',state: ToastStates.SUCCESS,);
+            showToast(text: state.error,
+              state: ToastStates.ERROR,
+            );
           }
+            if(state is SocialLoginSuccessState){
+              CacheHelper.saveData(key: 'uId', value: state.uId).then((value) {
+                    navigateAndFinish(context,
+                    SocialLayout(),
+                    );
+              });
+            }
+
+
         },
         builder: (BuildContext context, Object? state) {
           return Scaffold(
