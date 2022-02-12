@@ -5,7 +5,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:tbib_splash_screen/splash_screen.dart';
+import 'package:tbib_splash_screen/splash_screen_view.dart';
 import 'package:tebiyancode/layout/shop_app/cubit/cubit.dart';
 import 'package:tebiyancode/layout/shop_app/shop_layout.dart';
 import 'package:tebiyancode/layout/social_app/cubit/cubit.dart';
@@ -13,6 +16,7 @@ import 'package:tebiyancode/layout/social_app/social_layout.dart';
 import 'package:tebiyancode/modules/shop_app/login/shop_login_screen.dart';
 import 'package:tebiyancode/modules/shop_app/on_boarding/on_boarding_screen.dart';
 import 'package:tebiyancode/modules/social_app/social_login_screen/social_login_screen.dart';
+import 'package:tebiyancode/modules/splashscreen/splash_screen.dart';
 import 'package:tebiyancode/shared/bloc_observer.dart';
 import 'package:tebiyancode/shared/cubit/states.dart';
 import 'package:tebiyancode/shared/network/local/cache_helper.dart';
@@ -55,7 +59,8 @@ void main() async {
    widget = OnBoardingScreen();
  }*/
 if (uId != null){
-  widget = SocialLayout();
+  FlutterNativeSplash.removeAfter(initialization);
+  widget = MyHomePage();
 }else{
   widget = SocialLoginScreen();
 }
@@ -66,7 +71,16 @@ if (uId != null){
   ));
 
 }
+void initialization(BuildContext context) async {
+  // This is where you can initialize the resources needed by your app while
+  // the splash screen is displayed.  Remove the following example because
+  // delaying the user experience is a bad design practice!
+  // ignore_for_file: avoid_print
 
+
+  await Future.delayed(const Duration(seconds: 1));
+  print('go!');
+}
 class MyApp  extends StatelessWidget
 {
   late final bool? isDark;
