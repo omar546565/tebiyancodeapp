@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart';
 import 'package:tebiyancode/layout/social_app/cubit/cubit.dart';
 import 'package:tebiyancode/layout/social_app/cubit/states.dart';
+import 'package:tebiyancode/modules/social_app/new_post/new_post_screen.dart';
 import 'package:tebiyancode/shared/companents/companents.dart';
 
 class SocialLayout extends StatelessWidget {
@@ -13,61 +14,75 @@ class SocialLayout extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return BlocConsumer<SocialCubit,SocialStates>(
-      listener:(context,state) {},
+      listener:(context,state) {
+        if(state is SocialNewPostState){
+          navigateTo(
+            context,
+            NewPostScreen(),
+          );
+        }
+      },
       builder: (context,state) {
         var model = SocialCubit.get(context).model;
-        return Scaffold(
-          appBar:AppBar(
-         title:  Text('home')
-          ),
+        var cubit = SocialCubit.get(context);
+        return Directionality(
+          textDirection: TextDirection.rtl,
+          child: Scaffold(
+            appBar:AppBar(
+           title:  Text(
+             cubit.titles[cubit.currentIndex],
+           ),
+              actions: [
+                IconButton(
+                    onPressed: (){},
+                    icon: Icon(Icons.notifications),
+                ),
+                IconButton(
+                    onPressed: (){},
+                    icon: Icon(Icons.search),
+                ),
+              ],
+            ),
 
-          body: Conditional.single(
-            context: context,
-            conditionBuilder: (BuildContext context) =>
-            model != null,
-            widgetBuilder: (BuildContext context) {
-              return    Column
-                (
-                children: [
-                    Container(
-                      color: Colors.amberAccent.withOpacity(.7),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0,
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.info_outline),
-                            SizedBox(width: 15.0,),
-                            Expanded(child: Text("please verify ")),
-                            Expanded(child: Text(model!.email)),
-                            SizedBox(width: 15.0,),
-                            defaultTextButton(
-                              function: (){
-                                FirebaseAuth.instance.currentUser!
-                                    .sendEmailVerification()
-                                    .then((value) {
-                                  showToast(
-                                    text: 'check your email',
-                                    state: ToastStates.SUCCESS,);
-                                }).catchError((error){
-                                  showToast(
-                                    text: 'ERROR your email',
-                                    state: ToastStates.ERROR,);
-                                });
-                              },
-                              text: 'sent email ',
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                ],
-              );
-            },
-            fallbackBuilder: (BuildContext context) {
-              return   CircularProgressIndicator();
-            },
+            body: cubit.screens[cubit.currentIndex] ,
+            bottomNavigationBar: BottomNavigationBar(
+              currentIndex: cubit.currentIndex,
+              onTap:(index) {
+                cubit.changeBottomNav(index);
+              },
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.home,
+                  ),
+                  label: 'الرئيسية',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.chat,
+                  ),
+                  label: 'المحادثات',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.add_circle_outline,
+                  ),
+                  label: 'إضافة',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.portrait_sharp,
+                  ),
+                  label: 'المستخدمون',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.settings,
+                  ),
+                  label: 'الإعدادت',
+                ),
+              ],
+            ),
           ),
         );
       },

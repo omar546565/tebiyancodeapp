@@ -75,6 +75,11 @@ ThemeData LightTheme =  ThemeData(
       fontWeight: FontWeight.bold,
       color: Colors.black,
     ),
+    subtitle1: TextStyle(
+      fontSize: 16.0,
+      fontWeight: FontWeight.bold,
+      color: Colors.black,
+    ),
   ),
   fontFamily: 'Jannah',
 );

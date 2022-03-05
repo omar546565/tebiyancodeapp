@@ -14,7 +14,7 @@ Widget defaultButton({
  required String text,
 }) => Container(
   width: width,
-
+  height: 40.0,
   child: MaterialButton(
     onPressed: function,
     child:  Text(
@@ -196,6 +196,21 @@ Widget buildTasksItem (Map model, context)=>Dismissible(
   onDismissed:(direction) {
     AppCubit.get(context).deleteData(id: model['id'],);
   },
+);
+
+Widget defaultAppBar({
+  required BuildContext context,
+  String? title,
+   List<Widget>?  actions,
+})=>AppBar(
+  leading: IconButton(
+    icon: Icon(Icons.arrow_forward),
+    onPressed: () {
+      Navigator.pop(context);
+    },
+  ),
+  title: Text(title!,),
+  actions: actions,
 );
 
 Widget myDivider() => Padding(

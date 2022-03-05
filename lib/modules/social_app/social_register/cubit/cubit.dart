@@ -34,6 +34,9 @@ class SocialRegisterCubit extends  Cubit<SocialRegisterStates> {
         name: name,
         email: email,
         phone: phone,
+        bio: 'write you bio ......',
+        image: 'https://www.itkan.online/profile/text/img_avatar_maleo.png',
+        cover: 'https://img.freepik.com/free-photo/abstract-empty-smooth-light-pink-studio-room-background-use-as-montage-product-display-banner-template_1258-71403.jpg?w=1380',
         isEmailVerified:false,
       );
     }).catchError((error){
@@ -46,6 +49,9 @@ class SocialRegisterCubit extends  Cubit<SocialRegisterStates> {
     required String phone,
     required String name,
     required String uId,
+    required String image,
+    required String cover,
+    required String bio,
     required bool  isEmailVerified,
 
   })
@@ -55,6 +61,9 @@ class SocialRegisterCubit extends  Cubit<SocialRegisterStates> {
       email: email,
       phone: phone,
       uId: uId,
+      bio: bio,
+      image: 'https://www.itkan.online/profile/text/img_avatar_maleo.png',
+      cover: 'https://img.freepik.com/free-photo/abstract-empty-smooth-light-pink-studio-room-background-use-as-montage-product-display-banner-template_1258-71403.jpg?w=1380',
       isEmailVerified: isEmailVerified,
     );
        FirebaseFirestore

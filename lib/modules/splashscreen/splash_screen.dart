@@ -36,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
       navigateWhere: isLoaded,
       navigateRoute: const SocialLayout(),
       text: WavyAnimatedText(
-        "Splash Screen",
+        "tebiyan code",
         textStyle: const TextStyle(
           color: Colors.red,
           fontSize: 32.0,
